@@ -3,11 +3,13 @@ import time
 import Levenshtein
 # record start time
 # start = time.time()
-def spellcorrcetion():
+def spellcorrcetion():# put word  in prameter ok ace
     # define a sample code segment
     spell = SpellChecker(language=None,distance=3)
-    spell.word_frequency.load_text_file( r"E:\nlp_train\med.txt")
-    misspelled = spell.unknown(["allvent_pl"]) # for white space add "_"
+    spell.word_frequency.load_text_file( r"E:\nlp_train\med.txt") # replace med.txt to my.txt to compre between the word and dictanry
+    # put word in spell.unknown ([" my string"])
+    misspelled = spell.unknown(["allvent_pl"]) # for white space add "_" 
+
 
     for word in misspelled:
         print(str(word)+" it's corrction  "+str(spell.correction(word)))
@@ -34,7 +36,7 @@ def nearst_word1(word1):
     
     file1.close() 
 
-nearst_word1("ado")
+spellcorrcetion()
 
 
 # record end time
