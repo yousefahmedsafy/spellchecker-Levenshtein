@@ -2,23 +2,25 @@ from spellchecker.spellchecker import SpellChecker
 import time
 import Levenshtein
 # record start time
-# start = time.time()
-def spellcorrcetion():# put word  in prameter ok ace
+start = time.time()
+def spellcorrcetion(word):# put word  in prameter ok ace
     # define a sample code segment
     spell = SpellChecker(language=None,distance=3)
-    spell.word_frequency.load_text_file( r"E:\nlp_train\med.txt") # replace med.txt to my.txt to compre between the word and dictanry
+    spell.word_frequency.load_text_file( r"output.txt") # replace med.txt to my.txt to compre between the word and dictanry
     # put word in spell.unknown ([" my string"])
-    misspelled = spell.unknown(["allvent_pl"]) # for white space add "_" 
+    misspelled = spell.unknown([word]) # for white space add "_" 
 
 
     for word in misspelled:
         print(str(word)+" it's corrction  "+str(spell.correction(word)))
 
 def nearst_word1(word1):
-    with open("med.txt", "r+") as file1:
+
+    with open("med.txt", "r+",encoding='utf-8') as file1:
+        word1 = '_'.join(word1.split())
         maxx_raito=0
         word=0
-        with open(r"E:\nlp_train\med.txt", 'r') as file:
+        with open(r"output.txt", 'r',encoding='utf-8') as file:
             words = [line.strip() for line in file]
             for i in words:
                 word2=i
@@ -30,19 +32,15 @@ def nearst_word1(word1):
                     word=word2
             print(str(word)+ " it is ratio "+str(maxx_raito))
     
-
-
-
-    
     file1.close() 
 
-spellcorrcetion()
+nearst_word1("vitamax")
 
 
 # record end time
-# end = time.time()
- 
+end = time.time()
+
 # # print the difference between start 
 # # and end time in milli. secs
-# print("The time of execution of above program is :",
-#       (end-start) * 10**3, "ms")
+print("The time of execution of above program is :",
+      (end-start) * 10**3, "ms")
